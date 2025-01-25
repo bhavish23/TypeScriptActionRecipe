@@ -42,6 +42,15 @@ export async function run(): Promise<void> {
     core.summary.write()
   } catch (error) {
     // Fail the workflow run if an error occurs
-    if (error instanceof Error) core.setFailed(error.message)
+    if (error instanceof Error) {
+      core.error('Something bad happened', {
+        title: 'Bad Error',
+        file: '.github/workflows/ci.yml',
+        startLine: 59,
+        startColumn: 11,
+        endColumn: 23
+      })
+      core.setFailed(error.message)
+    }
   }
 }
