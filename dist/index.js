@@ -27268,6 +27268,22 @@ async function run() {
         coreExports.debug(new Date().toTimeString());
         // Set outputs for other workflow steps to use
         coreExports.setOutput('time', new Date().toTimeString());
+        coreExports.summary.addHeading('Advanced Job Summary', 'h2');
+        coreExports.summary.addImage('https://octodex.github.com/images/droidtocat.png', 'Droidtocat', {
+            width: '64',
+            height: '64'
+        });
+        coreExports.summary.addTable([
+            [
+                { data: 'File', header: true },
+                { data: 'Result', header: true }
+            ],
+            ['foo.js', 'Pass'],
+            ['bar.js', 'Fail'],
+            ['test.js', 'Pass']
+        ]);
+        coreExports.summary.addLink('My custom link', 'https://witeabout.net');
+        coreExports.summary.write();
     }
     catch (error) {
         // Fail the workflow run if an error occurs
